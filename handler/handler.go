@@ -2,7 +2,7 @@ package handler
 
 import (
 	"fmt"
-	"majma/handler/resource"
+	"majma/resource"
 )
 
 type Logger struct{}
