@@ -2,14 +2,9 @@ package resource
 
 type Resource interface {
 	initialize() error
-	GetData(cache Cache, request interface{}) (interface{}, error)
+	GetData(request interface{}) (interface{}, error)
 	GetTranslator() Translator
 	GetKey() string
-}
-
-type Cache interface {
-	set(interface{}) error
-	get() (interface{}, error)
 }
 
 type logger interface {

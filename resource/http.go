@@ -45,7 +45,7 @@ func NewHttpResource(t Translator, method string, url string, key string) *httpC
 	}
 }
 
-func (hc httpClient) GetData(cache Cache, Request interface{}) (interface{}, error) {
+func (hc httpClient) GetData(Request interface{}) (interface{}, error) {
 	req := Request.(HttpRequest)
 
 	body, err := json.Marshal(req.Body)

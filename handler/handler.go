@@ -25,7 +25,7 @@ func Handle(request interface{}) map[string]interface{} {
 	for _, res := range resources {
 		req := res.GetTranslator().Translate(request)
 
-		r, err := res.GetData(nil, req)
+		r, err := res.GetData(req)
 		if err != nil {
 			fmt.Println(err.Error())
 		}
@@ -41,7 +41,7 @@ func HandleAsync(response chan map[string]interface{}, req interface{}) {
 	wg.Add(len(resources))
 	for _, res := range resources {
 		go func() {
-			r, err := res.GetData(nil, req)
+			r, err := res.GetData(req)
 			if err != nil {
 				fmt.Println(err.Error())
 			}
