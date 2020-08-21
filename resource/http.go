@@ -38,7 +38,6 @@ func (hc httpClient) initialize() error {
 func NewHttpResource(t Translator, method string, url string, key string) *httpClient {
 	return &httpClient{
 		Translator: t,
-		client:     nil,
 		Method:     method,
 		URL:        url,
 		Key:        key,
@@ -68,11 +67,7 @@ func (hc httpClient) GetData(Request interface{}) (interface{}, error) {
 		return nil, err
 	}
 
-	err = res.Body.Close()
-	if err != nil {
-
-		return nil, err
-	}
+	defer res.Body.Close()
 
 	return ioutil.ReadAll(res.Body)
 }
