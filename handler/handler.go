@@ -3,6 +3,7 @@ package handler
 import (
 	"fmt"
 	"majma/resource"
+	"sync"
 )
 
 type Logger struct{}
@@ -33,4 +34,20 @@ func Handle(request interface{}) map[string]interface{} {
 	}
 
 	return response
+}
+
+func HandleAsync(response chan map[string]interface{}, req interface{}) {
+	wg := sync.WaitGroup{}
+	wg.Add(len(resources))
+	for _, res := range resources {
+		go func() {
+			r, err := res.GetData(nil, req)
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+			response <- map[string]interface{}{res.GetKey(): r}
+			wg.Done()
+		}()
+	}
+	wg.Wait()
 }
