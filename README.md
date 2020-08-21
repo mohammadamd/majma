@@ -5,7 +5,7 @@ Is an data aggregator from multiple services sync or async
 Supported services:
 * HTTP request
 
-####Example:
+###Example:
 ```go
 import (
 	"majma/handler"
@@ -32,7 +32,7 @@ func main() {
 You can also use your service just need to implement resource interface 
 
 ---
-####Todo:
+###Todo:
 - [ ] Add tests
 - [ ] Support GRPC as a service
 - [ ] Support database as a service
