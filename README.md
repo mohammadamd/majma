@@ -33,9 +33,9 @@ You can also use your service just need to implement resource interface
 
 ---
 ####Todo:
+- [ ] Add tests
 - [ ] Support GRPC as a service
 - [ ] Support database as a service
 - [ ] Support caching
-
 ---
 *In persian majma is some place that people gathering there
