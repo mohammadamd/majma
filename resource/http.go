@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-type HttpClient struct {
+type httpClient struct {
 	Translator Translator
 	client     http.Client
 	Method     string
@@ -21,7 +21,7 @@ type HttpRequest struct {
 	Headers map[string]string
 }
 
-func (hc HttpClient) initialize() error {
+func (hc httpClient) initialize() error {
 	transport := &http.Transport{
 		MaxIdleConns:    10,
 		IdleConnTimeout: 30 * time.Second,
@@ -35,7 +35,17 @@ func (hc HttpClient) initialize() error {
 	return nil
 }
 
-func (hc HttpClient) GetData(cache Cache, Request interface{}) (interface{}, error) {
+func NewHttpResource(t Translator, method string, url string, key string) *httpClient {
+	return &httpClient{
+		Translator: t,
+		client:     nil,
+		Method:     method,
+		URL:        url,
+		Key:        key,
+	}
+}
+
+func (hc httpClient) GetData(cache Cache, Request interface{}) (interface{}, error) {
 	req := Request.(HttpRequest)
 
 	body, err := json.Marshal(req.Body)
@@ -67,10 +77,10 @@ func (hc HttpClient) GetData(cache Cache, Request interface{}) (interface{}, err
 	return ioutil.ReadAll(res.Body)
 }
 
-func (hc HttpClient) GetTranslator() Translator {
+func (hc httpClient) GetTranslator() Translator {
 	return hc.Translator
 }
 
-func (hc HttpClient) GetKey() string {
+func (hc httpClient) GetKey() string {
 	return hc.Key
 }

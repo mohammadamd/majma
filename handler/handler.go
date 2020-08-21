@@ -18,7 +18,7 @@ func Initialize(r []resource.Resource) {
 	resources = r
 }
 
-func Handle(request interface{}) {
+func Handle(request interface{}) map[string]interface{} {
 	response := map[string]interface{}{}
 
 	for _, res := range resources {
@@ -31,4 +31,6 @@ func Handle(request interface{}) {
 
 		response[res.GetKey()] = r
 	}
+
+	return response
 }
