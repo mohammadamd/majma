@@ -29,7 +29,7 @@ func main() {
 
 ```
 
-You can also use your service just need to implement resource interface 
+You can also use your services, just need to implement resource interface 
 
 ---
 Todo:
@@ -38,4 +38,4 @@ Todo:
 - [ ] Support database as a service
 - [ ] Support caching
 ---
-*In persian majma is some place that people gathering there
+>*In persian majma is some place that people gathering there
